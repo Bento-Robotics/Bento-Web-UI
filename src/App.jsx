@@ -1,122 +1,107 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { useEffect, useRef } from "react";
+import bentoLogo from "./assets/hero.png";
+import "./App.css";
+import * as ROSLIB from "roslib";
+
+const ros = new ROSLIB.Ros({
+  url: "ws://localhost:9090",
+});
+
+ros.on("connection", function () {
+  console.log("Connected to websocket server.");
+});
+
+ros.on("error", function (error) {
+  console.log("Error connecting to websocket server: ", error);
+});
+
+ros.on("close", function () {
+  console.log("Connection to websocket server closed.");
+});
+
+const cmdVel = new ROSLIB.Topic({
+  ros: ros,
+  name: "/cmd_vel",
+  messageType: "geometry_msgs/Twist",
+});
+
+function publish() {
+  /*
+   * Publishing a Topic
+   * ------------------
+   */
+
+  const twist = {
+    linear: {
+      x: 0.1,
+      y: 0.2,
+      z: 0.3,
+    },
+    angular: {
+      x: -0.1,
+      y: -0.2,
+      z: -0.3,
+    },
+  };
+
+  console.log("Publishing cmd_vel");
+  cmdVel.publish(twist);
+}
+
+// Subscribing to a Topic
+// ----------------------
+
+// Like when publishing a topic, we first create a Topic object with details of the topic's name
+// and message type. Note that we can call publish or subscribe on the same topic object.
+var listener = new ROSLIB.Topic({
+  ros: ros,
+  name: "/bento/cmd_vel",
+  messageType: "geometry_msgs/Twist",
+});
+
+// Then we add a callback to be called every time a message is published on this topic.
+listener.subscribe(function (message) {
+  console.log("Driving " + message.linear.x + "m/s forwards");
+});
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <div class="body">
+        <svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+          <filter id="noiseFilter">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.65"
+              numOctaves="3"
+              stitchTiles="stitch"
+            />
+            <feColorMatrix type="saturate" values="0.3" />
+          </filter>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          <rect
+            width="250"
+            height="250"
+            fill="white"
+            filter="url(#noiseFilter)"
+          />
+        </svg>
+        <div class="spalten-container">
+          <h1 class="MainText">Front Cam</h1>
+          <h1 class="MainText">Back Cam</h1>
+          <h1 class="MainText">Arm Cam</h1>
+          <h1 class="MainText">Enable</h1>
+          <h1 class="MainText">Notaus</h1>
+          <h1 class="MainText">LiDAR</h1>
+          <h1 class="MainText">Akkustand</h1>
+          <h1 class="MainText">Geschwindigkeit</h1>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
