@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useEffect, useRef } from "react";
-import bentoLogo from "./assets/hero.png";
 import "./App.css";
 import * as ROSLIB from "roslib";
 
@@ -70,36 +69,18 @@ function App() {
 
   return (
     <>
-      <div class="body">
-        <svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
-          <filter id="noiseFilter">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.65"
-              numOctaves="3"
-              stitchTiles="stitch"
-            />
-            <feColorMatrix type="saturate" values="0.3" />
-          </filter>
-
-          <rect
-            width="250"
-            height="250"
-            fill="white"
-            filter="url(#noiseFilter)"
-          />
-        </svg>
-        <div class="spalten-container">
-          <h1 class="MainText">Front Cam</h1>
-          <h1 class="MainText">Back Cam</h1>
-          <h1 class="MainText">Arm Cam</h1>
-          <h1 class="MainText">Enable</h1>
-          <h1 class="MainText">Notaus</h1>
-          <h1 class="MainText">LiDAR</h1>
-          <h1 class="MainText">Akkustand</h1>
-          <h1 class="MainText">Geschwindigkeit</h1>
+        <div class="body">
+          <div class="spalten-container">
+            <h1 class="MainText">Front Cam</h1>
+            <h1 class="MainText">Back Cam</h1>
+            <h1 class="MainText">Arm Cam</h1>
+            <h1 class="MainText">Enable</h1>
+            <h1 class="MainText">Notaus</h1>
+            <h1 class="MainText">LiDAR</h1>
+            <h1 class="MainText">Akkustand</h1>
+            <h1 class="MainText">Geschwindigkeit</h1>
+          </div>
         </div>
-      </div>
     </>
   );
 }
