@@ -16,8 +16,8 @@
 
     <linearGradient id="grad"
       gradientTransform="rotate(90)">
-      <stop offset="0%" stop-color="#9611CF" />
-      <stop offset="80%" stop-color="#001926" />
+      <stop offset="0%" stop-color="#1f365b" />
+      <stop offset="80%" stop-color="#0F172A" />
     </linearGradient>
   </defs>
 

@@ -11,15 +11,17 @@
 
 .panel-title {
   grid-column: 1 / -1;
-  margin: 0 0 0.5rem;
-  padding-bottom: 0.75rem;
+  text-align: left; /* Aligns text to the left */
+  margin: 0 0 1.5rem;
+  padding-bottom: 1.3rem;
   border-bottom: 1px solid #394650;
-  color: #bac7d0;
-  font-family: "Roboto Light", Arial, sans-serif;
-  font-size: clamp(1.25rem, 2.5vw, 1.7rem);
-  font-weight: 300;
-  letter-spacing: 0.04em;
+  color: #f4f7f9;
+  font-family: "Roboto black", Arial, sans-serif;
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: 0px;
 }
+
 
 .body {
   min-height: 100vh;
@@ -61,9 +63,9 @@
   justify-content: space-between;
   gap: 1rem;
 
-  border: 1px solid rgba(180, 205, 235, 0.2);
+  border-top: 1px solid rgba(186, 212, 243, 0.2);
   border-radius: 20px;
-  background: rgba(24, 34, 49, 0.72);
+  background: rgba(24, 34, 49, 0.7);
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -88,22 +90,22 @@
 .MainText {
   margin: 0;
   color: #f1f6ff;
-  font-family: "Roboto Light", Arial, sans-serif;
-  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-family: "Roboto light", Arial, sans-serif;
+  font-size: 1.6rem;
   font-weight: 300;
   line-height: 1.2;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 .circle {
-  flex: 0 0 18px;
+  flex: 0 0 15px;
   width: 18px;
-  height: 18px;
+  height: 15px;
   border-radius: 50%;
   background: #00e676;
-  box-shadow:
+  /* box-shadow:
     0 0 10px 3px rgba(0, 230, 118, 0.55),
-    0 0 24px 7px rgba(0, 230, 118, 0.22);
+    0 0 24px 7px rgba(0, 230, 118, 0.22); */
 }
 
 .grain {
