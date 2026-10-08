@@ -11,6 +11,10 @@ function App({
     armCam: "#e6001f",
     notaus: "#e6001f",
     lidar: "#e6001f"
+  },
+  values = {
+    akkustand: 100,
+    Geschwindigkeit: 0.0
   } 
 }) {
     const [count, setCount] = useState(0);
@@ -20,9 +24,12 @@ function App({
             <div className="body">
                 <div className="spalten-container">
                     <h1 className="panel-title">Bento Box Status Panel</h1>
-                    <div className="value">
+                    
+                    {/* String Publish Test */}
+
+                    {/* <div className="value">
                         <RosLoader/>
-                    </div>
+                    </div> */}
                     
                     <div className="value">
                         <h1 className="MainText">Front Cam</h1>
@@ -51,10 +58,12 @@ function App({
                     
                     <div className="value">
                         <h1 className="MainText">Akkustand</h1>
+                        <h1 className="NumText">{values.akkustand}%</h1>
                     </div>
                     
                     <div className="value">
                         <h1 className="MainText">Geschwindigkeit</h1>
+                        <h1 className="NumText">{values.Geschwindigkeit} m/s</h1>
                     </div>
                 </div>
             </div>

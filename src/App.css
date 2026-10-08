@@ -97,6 +97,16 @@
   letter-spacing: 0.03em;
 }
 
+.NumText {
+  margin: 0;
+  color: #f1f6ff;
+  font-family: "Roboto bold", Arial, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+}
+
 .circle {
   flex: 0 0 15px;
   width: 18px;
